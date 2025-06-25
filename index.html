@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html dir="ltr"> {/* lang attribute removed, dir will be updated by JS */}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Planting Scheduler</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/HNAI%20Fevicon%20-Teal%20%26%20Golden%20Logo%20-%20DESIGN%203%20-%20Raj-03.png">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.4.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "html2canvas": "https://esm.sh/html2canvas@^1.4.1"
+  }
+}
+</script>
+<script>
+  // Script to apply dark mode preference before React loads
+  (function() {
+    try {
+      const theme = localStorage.getItem('greenThumbAITheme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {
+      console.error('Could not apply theme from localStorage', e);
+    }
+  })();
+</script>
+<style>
+  @font-face {
+    font-family: 'Bernadette Rough';
+    /* IMPORTANT: Replace these with the correct paths to your font files */
+    src: url('/fonts/BernadetteRough.woff2') format('woff2'), 
+         url('/fonts/BernadetteRough.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Helps with perceived loading performance */
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .animate-gentle-pulse {
+    animation: gentle-pulse 3s infinite ease-in-out;
+  }
+
+  body {
+    font-family: 'Bernadette Rough', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply Bernadette Rough globally */
+    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
+  }
+</style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-[#8bc34a] dark:bg-slate-900 transition-colors duration-300">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
